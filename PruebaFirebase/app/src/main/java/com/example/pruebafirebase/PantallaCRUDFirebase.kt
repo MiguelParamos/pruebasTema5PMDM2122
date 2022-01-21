@@ -1,34 +1,54 @@
 package com.example.pruebafirebase
 
+import adapters_holders.TelefonoAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import clases.Telefono
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
 class PantallaCRUDFirebase : AppCompatActivity() {
 
-    val botonInsertar: Button by lazy{findViewById(R.id.botonInsertar)}
-    val campoModelo: EditText by lazy{findViewById(R.id.campoModelo)}
-    val campoNuevo: CheckBox by lazy{findViewById(R.id.campoNuevo)}
-    val campoCuandoComprado: EditText by lazy{findViewById(R.id.campoCuandoComprado)}
-    val campoPrecio: EditText by lazy{findViewById(R.id.campoPrecio)}
-    val lista: RecyclerView by lazy{ findViewById(R.id.lista)};
+    private val botonInsertar: Button by lazy { findViewById(R.id.botonInsertar) }
+    private val campoModelo: EditText by lazy { findViewById(R.id.campoModelo) }
+    private val campoNuevo: CheckBox by lazy { findViewById(R.id.campoNuevo) }
+    private val campoCuandoComprado: EditText by lazy { findViewById(R.id.campoCuandoComprado) }
+    private val campoPrecio: EditText by lazy { findViewById(R.id.campoPrecio) }
+    private val lista: RecyclerView by lazy { findViewById(R.id.lista) };
+    private lateinit var adapter: TelefonoAdapter
+    private lateinit var listaTelefonos: ArrayList<Telefono>
+    private val firestore by lazy { FirebaseFirestore.getInstance() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pantalla_crudfirebase)
+        firestore.collection("telefonos").get().addOnCompleteListener {
+            if (it.isSuccessful) {
+                listaTelefonos=ArrayList<Telefono>()
+                for(el in it.result){
+                    listaTelefonos.add(el.toObject(Telefono::class.java))
+                }
+                this.rellenaElementosLista()
+            } else {
+                Toast.makeText(
+                    this@PantallaCRUDFirebase,
+                    R.string.noSePudoConsultar,
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
 
         botonInsertar.setOnClickListener {
-            if(!campoModelo.text.isBlank()
-                &&!campoPrecio.text.isBlank()&&
-                    !campoCuandoComprado.text.isBlank()) {
-                val firestore: FirebaseFirestore =
-                    FirebaseFirestore.getInstance()
+            if (!campoModelo.text.isBlank()
+                && !campoPrecio.text.isBlank() &&
+                !campoCuandoComprado.text.isBlank()
+            ) {
                 val valoresTlf: HashMap<String, Any> =
                     HashMap<String, Any>()
                 valoresTlf.put("modelo", campoModelo.text.toString())
@@ -64,23 +84,33 @@ class PantallaCRUDFirebase : AppCompatActivity() {
                             Toast.makeText(
                                 this@PantallaCRUDFirebase,
                                 R.string.noPuedesHacerSinLogin,
-                                Toast.LENGTH_LONG)
+                                Toast.LENGTH_LONG
+                            )
                                 .show()
                         }
                     }
                 }
 
-            }else{
-                Toast.makeText(this@PantallaCRUDFirebase,
-                    R.string.rellenaTodo, Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(
+                    this@PantallaCRUDFirebase,
+                    R.string.rellenaTodo, Toast.LENGTH_LONG
+                ).show()
             }
 
         }
 
-        val botonLogout:Button=findViewById(R.id.botonLogout)
+        val botonLogout: Button = findViewById(R.id.botonLogout)
         botonLogout.setOnClickListener {
-            val auth:FirebaseAuth= FirebaseAuth.getInstance()
+            val auth: FirebaseAuth = FirebaseAuth.getInstance()
             auth.signOut()
         }
+    }
+
+    private fun rellenaElementosLista() {
+        adapter = TelefonoAdapter(this, this.listaTelefonos)
+        lista.layoutManager = LinearLayoutManager(this)
+        lista.adapter = adapter
+
     }
 }

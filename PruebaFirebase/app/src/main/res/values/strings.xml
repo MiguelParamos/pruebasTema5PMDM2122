@@ -26,4 +26,7 @@
     <string name="rellenaTodo">Debes rellenar todos los campos</string>
     <string name="logout">Logout</string>
     <string name="noPuedesHacerSinLogin">No puedes hacer esto con la sesión de usuario cerrada</string>
+    <string name="nuevo">Nuevo</string>
+    <string name="usado">Usado</string>
+    <string name="noSePudoConsultar">No se pudo consultar. Por favor, inténtalo de nuevo más tarde.</string>
 </resources>

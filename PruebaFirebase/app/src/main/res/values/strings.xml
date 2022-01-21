@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Prueba Firebase</string>
+    <string name="usuario">Usuario</string>
+    <string name="contraseña">Contraseña</string>
+    <string name="registro">Registro</string>
+    <string name="errorDesconocido">Registro</string>
+    <string name="registroCompletado">¡Registro completado!</string>
+    <string name="contraseñaDebil">La contraseña introducida es demasiado débil. Pon una mejor</string>
+    <string name="credencialesInvalidos">email y contraseña no válidos</string>
+    <string name="colisionUsuario">Un usuario con ese email ya existe</string>
+    <string name="camposRegistroNoRellenos">El email y contraseña deben rellenarse</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="loginOk">Inicio de sesión correcto: </string>
+    <string name="usuarioNoExiste">El usuario no existe en la BD</string>
+    <string name="contraseñaInvalida">La contraseña de tu usuario no es correcta</string>
+    <string name="olvideContraseña">Recordar Contraseña</string>
+    <string name="emailRecuperacionEnviado">Email Enviado: Mira tu bandeja de entrada</string>
+    <string name="emailRecuperacionFallo">No se pudo enviar el email de recuperación</string>
+    <string name="dimeTuMovil">Dime tu modelo de movil</string>
+    <string name="modeloMovil">Tu modelo de Móvil</string>
+    <string name="cuantoCosto">¿Cuánto te costó?</string>
+    <string name="cuandoComprado">¿Cuándo te lo compraste?</string>
+    <string name="esNuevo">¿Es Nuevo?</string>
+    <string name="insertarMovil">Insertar Movil</string>
+    <string name="telefonoInsertado">Teléfono insertado correctamente</string>
+    <string name="rellenaTodo">Debes rellenar todos los campos</string>
+    <string name="logout">Logout</string>
+    <string name="noPuedesHacerSinLogin">No puedes hacer esto con la sesión de usuario cerrada</string>
+</resources>

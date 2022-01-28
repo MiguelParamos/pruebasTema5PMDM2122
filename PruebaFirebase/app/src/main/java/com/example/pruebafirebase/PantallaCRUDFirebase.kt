@@ -26,7 +26,23 @@ class PantallaCRUDFirebase : AppCompatActivity() {
     private lateinit var listaTelefonos: ArrayList<Telefono>
     private val firestore by lazy { FirebaseFirestore.getInstance() }
 
-    private fun consultarBD(){
+    fun rellenarCampos(
+        mod:String, prec:Float ,cc:String,
+    nuevo:Boolean){
+        campoModelo.setText(mod)
+        campoCuandoComprado.setText(cc)
+        campoNuevo.isSelected=nuevo
+        campoPrecio.setText(""+prec)
+        /*TODO USAR ESTA FUNCIÓN PARA RELLENAR LOS CAMPOS AL DARLE
+        EN EL ADAPTER AL BOTÓN EDITAR*/
+    }
+
+    fun actualizarAdapter(){
+        this.consultarBD()
+        adapter.notifyDataSetChanged()
+    }
+
+   private fun consultarBD(){
         firestore.collection("telefonos")
             .get()
             .addOnCompleteListener {
@@ -119,8 +135,9 @@ class PantallaCRUDFirebase : AppCompatActivity() {
         }
     }
 
-    private fun rellenaElementosLista() {
-        adapter = TelefonoAdapter(this, this.listaTelefonos)
+fun rellenaElementosLista() {
+        adapter = TelefonoAdapter(this, this.listaTelefonos,
+            this.firestore)
         lista.layoutManager = LinearLayoutManager(this)
         lista.adapter = adapter
     }

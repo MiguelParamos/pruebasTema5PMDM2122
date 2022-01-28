@@ -3,6 +3,7 @@ package com.example.pruebafirebase
 import adapters_holders.TelefonoAdapter
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -25,24 +26,33 @@ class PantallaCRUDFirebase : AppCompatActivity() {
     private lateinit var listaTelefonos: ArrayList<Telefono>
     private val firestore by lazy { FirebaseFirestore.getInstance() }
 
+    private fun consultarBD(){
+        firestore.collection("telefonos")
+            .get()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    listaTelefonos=ArrayList<Telefono>()
+                    for(el in it.result){
+                        listaTelefonos.add(el.toObject(Telefono::class.java))
+                    }
+                    this.rellenaElementosLista()
+                } else {
+                    Log.d("mensajeError",""+
+                            it.exception?.message)
+                    Toast.makeText(
+                        this@PantallaCRUDFirebase,
+                        it.exception?.message,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+            }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pantalla_crudfirebase)
-        firestore.collection("telefonos").get().addOnCompleteListener {
-            if (it.isSuccessful) {
-                listaTelefonos=ArrayList<Telefono>()
-                for(el in it.result){
-                    listaTelefonos.add(el.toObject(Telefono::class.java))
-                }
-                this.rellenaElementosLista()
-            } else {
-                Toast.makeText(
-                    this@PantallaCRUDFirebase,
-                    R.string.noSePudoConsultar,
-                    Toast.LENGTH_LONG
-                ).show()
-            }
-        }
+
+        this.consultarBD()
 
         botonInsertar.setOnClickListener {
             if (!campoModelo.text.isBlank()
@@ -77,6 +87,8 @@ class PantallaCRUDFirebase : AppCompatActivity() {
                             this@PantallaCRUDFirebase,
                             R.string.telefonoInsertado, Toast.LENGTH_LONG
                         ).show()
+                        this.consultarBD()
+                        adapter.notifyDataSetChanged()
                     } else {
                         try {
                             throw it.exception!!
@@ -111,6 +123,5 @@ class PantallaCRUDFirebase : AppCompatActivity() {
         adapter = TelefonoAdapter(this, this.listaTelefonos)
         lista.layoutManager = LinearLayoutManager(this)
         lista.adapter = adapter
-
     }
 }

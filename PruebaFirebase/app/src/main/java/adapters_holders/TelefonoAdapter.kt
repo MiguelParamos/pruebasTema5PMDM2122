@@ -44,7 +44,13 @@ class TelefonoAdapter(
         }
 
         holder.botonEditar.setOnClickListener {
-
+            contexto.rellenarCampos(
+                elementos.get(position).modelo,
+                elementos.get(position).precio,
+                elementos.get(position).fechaCompra,
+                elementos.get(position).esNuevo,
+                elementos.get(position).propietario
+            )
         }
     }
 

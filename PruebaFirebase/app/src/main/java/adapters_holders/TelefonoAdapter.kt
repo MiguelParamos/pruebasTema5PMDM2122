@@ -32,7 +32,8 @@ class TelefonoAdapter(
         }
 
         holder.botonBorrar.setOnClickListener {
-
+            Toast.makeText(contexto,holder.txtPropietario.text.toString(),
+                Toast.LENGTH_LONG).show()
             contexto.borrarElementoBD(holder.txtPropietario.text.toString()+" - "
             +holder.txtModelo.text.toString())
 

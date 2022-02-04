@@ -20,7 +20,7 @@ open abstract class PantallaCRUD : AppCompatActivity() {
     protected val campoPrecio: EditText by lazy { findViewById(R.id.campoPrecio) }
     protected val lista: RecyclerView by lazy { findViewById(R.id.lista) };
     protected lateinit var adapter: TelefonoAdapter
-    protected lateinit var listaTelefonos: ArrayList<Telefono>
+    protected var listaTelefonos: ArrayList<Telefono> =ArrayList<Telefono>()
    //PropietarioActual almacena el propietario para el telefono
     // que se va a insertar/Modificar
     protected var propietarioActual:String?=null;

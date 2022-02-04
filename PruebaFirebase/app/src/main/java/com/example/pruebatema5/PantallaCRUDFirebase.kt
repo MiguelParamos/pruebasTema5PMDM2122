@@ -38,7 +38,6 @@ class PantallaCRUDFirebase : PantallaCRUD() {
             .get()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    listaTelefonos=ArrayList<Telefono>()
                     for(el in it.result){
                         listaTelefonos.add(el.toObject(Telefono::class.java))
                     }

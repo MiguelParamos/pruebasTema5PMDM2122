@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/azulClaro"
+    tools:context=".PantallaCRUDSQLite">
+
+    <TextView
+        android:id="@+id/tituloDimeTuMovil"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dimeTuMovil"
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/campoModelo"
+        android:layout_width="0dp"
+
+        android:textColorHint="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/lima"
+        android:hint="@string/modeloMovil"
+        android:background="@color/rosaFuerte"
+        app:layout_constraintEnd_toEndOf="@+id/campoCuandoComprado"
+        app:layout_constraintStart_toStartOf="@+id/campoCuandoComprado"
+        app:layout_constraintTop_toBottomOf="@+id/tituloDimeTuMovil" />
+
+    <EditText
+        android:id="@+id/campoCuandoComprado"
+        android:layout_width="wrap_content"
+        android:textColorHint="@color/white"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:ems="10"
+        android:hint="@string/cuandoComprado"
+        android:inputType="date"
+        android:textColor="@color/lima"
+        android:background="@color/rosaFuerte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoModelo" />
+
+    <EditText
+        android:id="@+id/campoPrecio"
+        android:layout_width="0dp"
+        android:hint="@string/cuantoCosto"
+        android:background="@color/rosaFuerte"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColorHint="@color/white"
+        android:ems="10"
+        android:inputType="number"
+        android:textColor="@color/lima"
+        app:layout_constraintEnd_toEndOf="@+id/campoCuandoComprado"
+        app:layout_constraintStart_toStartOf="@+id/campoCuandoComprado"
+        app:layout_constraintTop_toBottomOf="@+id/campoCuandoComprado" />
+
+    <CheckBox
+        android:id="@+id/campoNuevo"
+        android:layout_width="0dp"
+        android:background="@color/rosaFuerte"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/lima"
+        android:text="@string/esNuevo"
+        android:textSize="17sp"
+        app:layout_constraintEnd_toEndOf="@+id/campoPrecio"
+        app:layout_constraintStart_toStartOf="@+id/campoPrecio"
+        app:layout_constraintTop_toBottomOf="@+id/campoPrecio" />
+
+    <Button
+        android:id="@+id/botonInsertar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/insertarMovil"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoNuevo" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lista"
+        android:layout_width="409dp"
+        android:layout_height="446dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/botonInsertar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

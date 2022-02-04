@@ -1,4 +1,4 @@
-package com.example.pruebafirebase
+package com.example.pruebatema5
 
 import adapters_holders.TelefonoAdapter
 import androidx.appcompat.app.AppCompatActivity
@@ -14,41 +14,26 @@ import clases.Telefono
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
-class PantallaCRUDFirebase : AppCompatActivity() {
-
-    private val botonInsertar: Button by lazy { findViewById(R.id.botonInsertar) }
-    private val campoModelo: EditText by lazy { findViewById(R.id.campoModelo) }
-    private val campoNuevo: CheckBox by lazy { findViewById(R.id.campoNuevo) }
-    private val campoCuandoComprado: EditText by lazy { findViewById(R.id.campoCuandoComprado) }
-    private val campoPrecio: EditText by lazy { findViewById(R.id.campoPrecio) }
-    private val lista: RecyclerView by lazy { findViewById(R.id.lista) };
-    private lateinit var adapter: TelefonoAdapter
-    private lateinit var listaTelefonos: ArrayList<Telefono>
+class PantallaCRUDFirebase : PantallaCRUD() {
     private val firestore by lazy { FirebaseFirestore.getInstance() }
-    //PropietarioActual almacena el propietario para el telefono
-    // que se va a insertar/Modificar
-    private var propietarioActual=
-        FirebaseAuth.getInstance().currentUser?.email.toString();
-    private var modeloAnterior:String?=null;
 
-    fun rellenarCampos(
-        mod:String, prec:Float ,cc:String,
-    nuevo:Boolean,prop:String){
-        modeloAnterior=mod
-        campoModelo.setText(mod)
-        campoCuandoComprado.setText(cc)
-        campoNuevo.isChecked=nuevo
-        campoPrecio.setText(""+prec)
-        botonInsertar.text=resources.getString(R.string.editar)
-        this.propietarioActual=prop;
+    override fun borrarElementoBD(pk:String){
+        Toast.makeText(this,pk,
+            Toast.LENGTH_LONG).show()
+        firestore.collection("telefonos").
+        document(pk).delete().addOnCompleteListener{
+            if(it.isSuccessful){
+                Toast.makeText(this,R.string.borradoCorrecto,
+                    Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(this,R.string.borradoFallido,
+                    Toast.LENGTH_LONG).show()
+            }
+        }
+        this.actualizarAdapter()
     }
 
-    fun actualizarAdapter(){
-        this.consultarBD()
-        adapter.notifyDataSetChanged()
-    }
-
-   private fun consultarBD(){
+    override fun consultarBD(){
         firestore.collection("telefonos")
             .get()
             .addOnCompleteListener {
@@ -75,6 +60,8 @@ class PantallaCRUDFirebase : AppCompatActivity() {
         setContentView(R.layout.activity_pantalla_crudfirebase)
 
         this.consultarBD()
+        this.propietarioActual=
+            FirebaseAuth.getInstance().currentUser?.email.toString()
 
         botonInsertar.setOnClickListener {
             if (!campoModelo.text.isBlank()
@@ -133,7 +120,7 @@ class PantallaCRUDFirebase : AppCompatActivity() {
                         campoPrecio.text.toString().toFloat(),
                         campoCuandoComprado.text.toString(),
                         campoNuevo.isChecked,
-                       this.propietarioActual
+                        this.propietarioActual!!
                     )
                     firestore.collection("telefonos").document(
                     this.propietarioActual+" - "+
@@ -161,8 +148,7 @@ class PantallaCRUDFirebase : AppCompatActivity() {
     }
 
 fun rellenaElementosLista() {
-        adapter = TelefonoAdapter(this, this.listaTelefonos,
-            this.firestore)
+        adapter = TelefonoAdapter(this, this.listaTelefonos)
         lista.layoutManager = LinearLayoutManager(this)
         lista.adapter = adapter
     }

@@ -1,11 +1,10 @@
 package adapters_holders
 
 import android.view.View
-import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.pruebafirebase.R
+import com.example.pruebatema5.R
 
 class TelefonosHolder(it:View) : RecyclerView.ViewHolder(it) {
     val txtModelo: TextView by lazy{ it.findViewById(R.id.txtModelo)}

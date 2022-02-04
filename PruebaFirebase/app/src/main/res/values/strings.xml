@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Prueba Firebase</string>
+    <string name="app_name">Prueba Tema 5</string>
     <string name="usuario">Usuario</string>
     <string name="contraseña">Contraseña</string>
     <string name="registro">Registro</string>
@@ -29,5 +29,11 @@
     <string name="nuevo">Nuevo</string>
     <string name="usado">Usado</string>
     <string name="editar">Editar</string>
+    <string name="borradoCorrecto">Se borró correctamente</string>
+    <string name="borradoFallido">No se pudo borrar el teléfono</string>
     <string name="noSePudoConsultar">No se pudo consultar. Por favor, inténtalo de nuevo más tarde.</string>
+    <string name="pruebasFirebase">Pruebas Firebase</string>
+    <string name="pruebasSQLite">Pruebas SQLite</string>
+    <string name="pruebasPreferencias">Pruebas Preferencias</string>
+    <string name="pruebasAlmacenamiento">Pruebas Almacenamiento</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.example.pruebafirebase
+package com.example.pruebatema5
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

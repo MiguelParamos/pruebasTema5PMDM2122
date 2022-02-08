@@ -27,17 +27,18 @@ class PantallaCRUDSQLite : PantallaCRUD() {
         val db:SQLiteDatabase=openHelper.writableDatabase
         val cursor: Cursor =db.query(TelefonoOpenHelper.tablaTelefonos,
             null,null,null,
-        null,null,null)
+        null,null,TelefonoOpenHelper.columnaModelo+" desc")
+       listaTelefonos.clear()
         while(cursor.moveToNext()){
             val modelo:String=cursor.getString(
                 cursor.getColumnIndexOrThrow(TelefonoOpenHelper.columnaModelo))
-            val precio:Int=cursor.getInt(
+            val precio:Float=cursor.getFloat(
                 cursor.getColumnIndexOrThrow(TelefonoOpenHelper.columnaPrecio))
             val cuandoComprado:String=cursor.getString(
                 cursor.getColumnIndexOrThrow(TelefonoOpenHelper.columnaCuandoComprado)
             )
             //El !=0 es porque en SQL 0 es False, y true es cualquier otra cosa
-            val esNuevo:Boolean=cursor.getInt(
+             val esNuevo:Boolean=cursor.getInt(
                 cursor.getColumnIndexOrThrow(TelefonoOpenHelper.columnaEsNuevo))!=0
             val propietario:String? =cursor.getStringOrNull(
                 cursor.getColumnIndexOrThrow(TelefonoOpenHelper.columnaPropietario)
@@ -51,7 +52,17 @@ class PantallaCRUDSQLite : PantallaCRUD() {
     }
 
     override fun borrarElementoBD(pk: String) {
+        val emailModelo:List<String> =pk.split(" - ")
+        val db:SQLiteDatabase=openHelper.writableDatabase
 
+        //db.delete(tabla, where sin where, sustitución de ? )
+        val devuelto:Int=db.delete(TelefonoOpenHelper.tablaTelefonos, //"propietario = ? and modelo = ?"
+            TelefonoOpenHelper.columnaPropietario+" = ? and "+
+        TelefonoOpenHelper.columnaModelo+" = ?",
+            emailModelo.toTypedArray()
+        );
+        Toast.makeText(this, "Borrados: "+devuelto, Toast.LENGTH_SHORT).show()
+        this.actualizarAdapter()
     }
 
 
@@ -86,16 +97,44 @@ class PantallaCRUDSQLite : PantallaCRUD() {
                     //No pongo propietario hasta que no tengamos uno registrado
 
 
+                    //ARREGLO CHAPUCERO PARA PODER PROBAR DELETE
+                    var cv2:ContentValues= ContentValues()
+                    cv2.put(TelefonoOpenHelper.columnaEmail,"hola@hola.com")
+                    cv2.put(TelefonoOpenHelper.columnaContrasenia,"123123")
+                    db.insert(TelefonoOpenHelper.tablaUsuarios,
+                    null,cv2);
+                    this.actualizarAdapter()
+                    //FIN DEL ARREGLO CHAPUCERO PARA PODER PROBAR DELETE
+
+                    valores.put(TelefonoOpenHelper.columnaPropietario,"hola@hola.com")
+
                     db.insert(TelefonoOpenHelper.tablaTelefonos,
                         null,valores)
-                    this.actualizarAdapter()
 
 
-                  //INSERTAR
 
 
                 }else{ //Editar el teléfono
-                  //EDITAR
+                  val db:SQLiteDatabase=openHelper.writableDatabase
+                    var valores:ContentValues=ContentValues()
+                    valores.put(TelefonoOpenHelper.columnaModelo,
+                        campoModelo.text.toString())
+                    valores.put(
+                        TelefonoOpenHelper.columnaPrecio,
+                        campoPrecio.text.toString().toFloat()
+                    )
+                    valores.put(
+                        TelefonoOpenHelper.columnaCuandoComprado,
+                        campoCuandoComprado.text.toString()
+                    )
+                    valores.put(
+                        TelefonoOpenHelper.columnaEsNuevo
+                        , campoNuevo.isChecked)
+                    db.update(TelefonoOpenHelper.tablaTelefonos,valores,
+                    //ÑAPA PORQUE NO TENGO CREACIÓN DE USUARIOS; Y  PONGO UNO A PELO
+                    TelefonoOpenHelper.columnaPropietario+"= \"hola@hola.com\" and "+
+                    TelefonoOpenHelper.columnaModelo+" = \""+modeloAnterior+"\"",null)
+                    this.actualizarAdapter()
                 }
             } else {
                 Toast.makeText(

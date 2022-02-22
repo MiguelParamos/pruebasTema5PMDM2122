@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Prueba Tema 5</string>
+    <string name="usuario">Utilisateur</string>
+    <string name="contraseña">Mot de passe</string>
+</resources>

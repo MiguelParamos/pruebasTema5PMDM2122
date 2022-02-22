@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="botonVerde" parent="Widget.AppCompat.Button">
+        <item name="android:background">@color/lima</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:hint">@string/app_name</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:padding">10dp</item>
+    </style>
+
+    <style name="botonVerde.TextoGrande">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="botonRojo" parent="botonVerde">
+        <item name="android:background">@color/rosaFuerte</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+</resources>

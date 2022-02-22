@@ -7,10 +7,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/alhambra" />
+
     <EditText
         android:id="@+id/campoEmail"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
@@ -23,10 +34,10 @@
     <EditText
         android:id="@+id/campoContraseña"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:ems="10"
-        android:inputType="textPassword"
         android:hint="@string/contraseña"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/botonRegistro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"

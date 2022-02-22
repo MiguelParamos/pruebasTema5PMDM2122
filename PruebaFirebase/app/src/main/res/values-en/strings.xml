@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="usuario">User</string>
+    <string name="contraseña">Password</string>
+    <string name="registro">Register</string>
+    <string name="pruebasFirebase">Testing Firebase</string>
+    <string name="pruebasSQLite">Testing SQLite</string>
+    <string name="pruebasPreferencias">Testing Preferences</string>
+    <string name="pruebasAlmacenamiento">Testing Storage</string>
+    <string name="app_name">Testing Unit 5</string>
+</resources>

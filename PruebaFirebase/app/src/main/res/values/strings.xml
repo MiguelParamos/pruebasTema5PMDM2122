@@ -36,4 +36,9 @@
     <string name="pruebasPreferencias">Pruebas Preferencias</string>
     <string name="pruebasAlmacenamiento">Pruebas Almacenamiento</string>
     <string name="contraseña">Contraseña</string>
+    <string name="usuarioPorDefecto">Usuario por defecto</string>
+    <string name="contraseñaPorDefecto">Contraseña por defecto</string>
+    <string name="aplicarPreferencias">AplicarPreferencias</string>
+    <string name="preferenciasAplicadas">¡Preferencias aplicadas!</string>
+    <string name="irAPreferenciasAlternativas">Pantalla de preferencias alternativa</string>
 </resources>

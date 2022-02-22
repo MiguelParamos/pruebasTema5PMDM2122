@@ -1,6 +1,7 @@
 package com.example.pruebatema5
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -22,6 +23,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val email:EditText=findViewById<EditText>(R.id.campoEmail)
         val contraseña:EditText=findViewById<EditText>(R.id.campoContraseña)
+        //Obtenemos las preferencias para leer
+        val prefs:SharedPreferences=
+            this.getSharedPreferences(
+            "com.example.pruebatema5.PreferenciasDisenioPropio", MODE_PRIVATE)
+
+            //Si no encuentra alguno de los dos, pone el valor del segundo argumento
+            //que es la cadena vacía
+            email.setText(prefs.getString("usuarioPorDefecto",""))
+            contraseña.setText(prefs.getString("contraseñaPorDefecto",""))
+
 
         val botonRegistro: Button =
             findViewById<Button>(R.id.botonRegistro)
@@ -85,6 +96,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         botonLogin.setOnClickListener{
+            //Si el usuario con el que hago login no es el que ya tenía guardado,
+
             val tarea=
                 auth.signInWithEmailAndPassword(
                 email.text.toString(),
@@ -92,6 +105,13 @@ class MainActivity : AppCompatActivity() {
             )
             tarea.addOnCompleteListener{
                 if(it.isSuccessful){
+                    //Si he podido iniciar sesión con un email que no es el de preferencias,
+                    //borro el de preferencias por seguridad del otro usuario
+                    if(!prefs.getString("usuarioPorDefecto","").equals(email.text.toString())){
+                        val prefsEditor:SharedPreferences.Editor=prefs.edit()
+                        prefsEditor.remove("usuarioPorDefecto");
+                        prefsEditor.remove("contraseñaPorDefecto")
+                    }
                     val user=auth.currentUser;
                     Toast.makeText(this@MainActivity
                         , getString(R.string.loginOk)+" "+

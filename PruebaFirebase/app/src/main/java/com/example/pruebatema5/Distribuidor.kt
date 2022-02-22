@@ -27,5 +27,11 @@ class Distribuidor : AppCompatActivity() {
             PantallaCRUDSQLite::class.java)
             startActivity(intent)
         }
+
+        binding.botonPruebasPreferencias.setOnClickListener {
+            val intent: Intent=Intent(this@Distribuidor,
+                PreferenciasDisenioPropio::class.java)
+            startActivity(intent)
+        }
     }
 }

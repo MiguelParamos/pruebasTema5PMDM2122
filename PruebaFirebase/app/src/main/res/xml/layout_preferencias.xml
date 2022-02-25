@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="@string/usuarioPorDefecto">
+
+        <EditTextPreference
+            android:key="usuarioPorDefecto"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/usuarioPorDefecto" />
+        <EditTextPreference
+            android:key="contraseñaPorDefecto"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/contraseñaPorDefecto" />
+    </PreferenceCategory>
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="modoOscuro"
+            android:title="@string/modoOscuroActivado" />
+
+</PreferenceScreen>

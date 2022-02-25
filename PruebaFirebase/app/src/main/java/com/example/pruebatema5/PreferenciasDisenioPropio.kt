@@ -5,6 +5,7 @@ import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatDelegate
 import com.example.pruebatema5.databinding.ActivityPreferenciasDisenioPropioBinding
 
 class PreferenciasDisenioPropio : AppCompatActivity() {
@@ -47,9 +48,21 @@ class PreferenciasDisenioPropio : AppCompatActivity() {
 
         binding.botonPreferenciasAlternativas.setOnClickListener {
             val intent: Intent =Intent(this@PreferenciasDisenioPropio,
-            PreferenciasAlternativas::class.java)
+            PreferenciasAlternativasActivity::class.java)
             startActivity(intent)
         }
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val prefs:SharedPreferences=this.getPreferences(MODE_PRIVATE)
+        if(prefs.getBoolean("modoOscuro",false)){
+            AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_YES)
+        }else{
+            AppCompatDelegate.setDefaultNightMode(
+                AppCompatDelegate.MODE_NIGHT_NO)
+        }
     }
 }

@@ -41,4 +41,6 @@
     <string name="aplicarPreferencias">AplicarPreferencias</string>
     <string name="preferenciasAplicadas">¡Preferencias aplicadas!</string>
     <string name="irAPreferenciasAlternativas">Pantalla de preferencias alternativa</string>
+    <string name="modoOscuro">Modo Oscuro</string>
+    <string name="modoOscuroActivado">Modo Oscuro Activado</string>
 </resources>

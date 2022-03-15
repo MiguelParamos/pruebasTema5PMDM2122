@@ -43,4 +43,6 @@
     <string name="irAPreferenciasAlternativas">Pantalla de preferencias alternativa</string>
     <string name="modoOscuro">Modo Oscuro</string>
     <string name="modoOscuroActivado">Modo Oscuro Activado</string>
+    <string name="soyUnServicio">Hola, soy un servicio</string>
+    <string name="iniciarServicio">Iniciar Servicio</string>
 </resources>

@@ -7,26 +7,25 @@
     tools:context=".Distribuidor">
 
     <Button
-        android:id="@+id/botonPruebaFirebase"
+        android:id="@+id/botonIniciarServicio"
         android:layout_width="0dp"
-        android:layout_height="70dp"
-        android:text="@string/pruebasFirebase"
-        app:layout_constraintBottom_toTopOf="@+id/botonPruebasSQLite"
+        android:layout_height="wrap_content"
+        android:text="@string/iniciarServicio"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/botonPruebasAlmacenamiento" />
 
     <Button
-        android:id="@+id/botonPruebasSQLite"
+        android:id="@+id/botonPruebasAlmacenamiento"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:text="@string/pruebasSQLite"
-        app:layout_constraintBottom_toTopOf="@+id/botonPruebasPreferencias"
+        android:text="@string/pruebasAlmacenamiento"
+        app:layout_constraintBottom_toTopOf="@+id/botonIniciarServicio"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonPruebaFirebase" />
+        app:layout_constraintTop_toBottomOf="@+id/botonPruebasPreferencias" />
 
     <Button
         android:id="@+id/botonPruebasPreferencias"
@@ -40,13 +39,24 @@
         app:layout_constraintTop_toBottomOf="@+id/botonPruebasSQLite" />
 
     <Button
-        android:id="@+id/botonPruebasAlmacenamiento"
+        android:id="@+id/botonPruebasSQLite"
         android:layout_width="0dp"
         android:layout_height="70dp"
-        android:text="@string/pruebasAlmacenamiento"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/pruebasSQLite"
+        app:layout_constraintBottom_toTopOf="@+id/botonPruebasPreferencias"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonPruebasPreferencias" />
+        app:layout_constraintTop_toBottomOf="@+id/botonPruebaFirebase" />
+
+    <Button
+        android:id="@+id/botonPruebaFirebase"
+        android:layout_width="0dp"
+        android:layout_height="70dp"
+        android:text="@string/pruebasFirebase"
+        app:layout_constraintBottom_toTopOf="@+id/botonPruebasSQLite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

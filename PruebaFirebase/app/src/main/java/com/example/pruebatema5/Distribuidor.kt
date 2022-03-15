@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.pruebatema5.databinding.ActivityDistribuidorBinding
+import servicios.ServicioMolestador
 
 class Distribuidor : AppCompatActivity() {
 
@@ -32,6 +33,12 @@ class Distribuidor : AppCompatActivity() {
             val intent: Intent=Intent(this@Distribuidor,
                 PreferenciasDisenioPropio::class.java)
             startActivity(intent)
+        }
+
+        binding.botonIniciarServicio.setOnClickListener {
+            val intent:Intent=Intent(this@Distribuidor,
+                ServicioMolestador::class.java)
+            this.startService(intent)
         }
     }
 }

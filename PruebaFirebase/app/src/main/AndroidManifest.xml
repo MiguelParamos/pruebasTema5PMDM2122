@@ -11,10 +11,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PruebaFirebase">
+        <activity
+            android:name=".ActividadFragments"
+            android:exported="false" />
+
         <service
             android:name="servicios.ServicioMolestador"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".PreferenciasAlternativasActivity"

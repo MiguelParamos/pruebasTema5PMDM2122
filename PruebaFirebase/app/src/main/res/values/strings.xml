@@ -45,4 +45,5 @@
     <string name="modoOscuroActivado">Modo Oscuro Activado</string>
     <string name="soyUnServicio">Hola, soy un servicio</string>
     <string name="iniciarServicio">Iniciar Servicio</string>
+    <string name="pruebasFragments">Pruebas Fragments</string>
 </resources>

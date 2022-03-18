@@ -40,5 +40,11 @@ class Distribuidor : AppCompatActivity() {
                 ServicioMolestador::class.java)
             this.startService(intent)
         }
+
+        binding.botonPruebasFragments.setOnClickListener {
+            val intent:Intent=Intent(this@Distribuidor,
+                ActividadFragments::class.java)
+            this.startActivity(intent)
+        }
     }
 }

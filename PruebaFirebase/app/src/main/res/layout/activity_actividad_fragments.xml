@@ -18,6 +18,7 @@
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/huecoFragmentSuperior"
             android:name="fragments.MiPrimerFragment"
+            android:tag="miPrimerFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
